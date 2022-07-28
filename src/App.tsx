@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import InputFileUpload from './components/InputFileUpload';
+
 import './App.css';
+import { chunkFile } from './utils/file-util';
+const chunkSize = 1024; //1kb;  
 
 function App() {
+
+  const uploadFile = (file: File) => {
+    console.log(chunkFile(file, chunkSize));
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <div className="content">
+        <h1>Websites Checker</h1>
+        <InputFileUpload isDisabled={false} uploadFileHandler={uploadFile} />
+      </div>
     </div>
   );
 }
